@@ -21,7 +21,11 @@ export default {
             if (error) return res.status(400).json({ success: false, message: error.details[0].message });
             const { userName, email, password } = req.body;
             const identifier = userName || email;
-            
+            const user = await User.findOne({
+              $or: [{ userName: identifier }, { email: identifier }]
+            });
+            if (user.isBlocked)
+              return res.status(403).json({ success: false, message: "You are blocked by admin" });
             const token = await userService.loginService(identifier, password);
             res.status(200).json({ success: true, message: "Login successful", result: { token } });
         } catch (err) {

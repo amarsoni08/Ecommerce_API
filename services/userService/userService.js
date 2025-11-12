@@ -53,7 +53,7 @@ export default {
     const token = jwt.sign(
       { _id: user._id , role: user.role }, 
       process.env.SECRET_KEY,
-      { expiresIn: "1h" }
+      { expiresIn: "12h" }
     );
 
     return token;

@@ -35,7 +35,15 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         default: 'user'
-    }
+    },
+    isActive: {
+      type: Boolean,
+      default: true, 
+    },
+    isBlocked:{
+        type: Boolean,
+        default: false,
+    },
 }, { timestamps: true });
 
 const User = mongoose.model('users', userSchema);

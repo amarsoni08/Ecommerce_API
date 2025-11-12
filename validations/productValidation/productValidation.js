@@ -1,12 +1,12 @@
-import joi from "joi";
-export const productValidationSchema = joi.object({
-    productName: joi.string().min(3).max(100).required(),
-    description: joi.string().min(10).max(1000).required(),
-    price: joi.number().min(0).required(),
-    category: joi.string().min(3).max(50).required(),
-    quantity: joi.number().min(0).required(),
+import Joi from "joi";
+export const productValidationSchema = Joi.object({
+    productName: Joi.string().min(3).max(100).required(),
+    description: Joi.string().min(10).max(1000).required(),
+    price: Joi.number().min(0).required(),
+    quantity: Joi.number().min(0).required(),
+    category_id: Joi.string().required(), 
 });
-import Joi from 'joi';
+
 
 export const updateProductValidationSchema = Joi.object({
   productName: Joi.string()
@@ -28,13 +28,6 @@ export const updateProductValidationSchema = Joi.object({
     .messages({
       "number.min": "Price cannot be negative",
       "number.base": "Price must be a number",
-    }),
-  category: Joi.string()
-    .min(2)
-    .max(30)
-    .messages({
-      "string.min": "Category should have at least 2 characters",
-      "string.max": "Category should have at most 30 characters",
     }),
   quantity: Joi.number()
     .min(0)

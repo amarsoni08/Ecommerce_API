@@ -11,5 +11,4 @@ orderRouter.get(
   adminVerification,
   orderController.getAllOrdersAdmin
 );
-
 export default orderRouter;
